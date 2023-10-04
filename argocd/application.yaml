@@ -14,7 +14,7 @@ spec:
   source:
     repoURL: https://github.com/aws-redhat-gameday/coffeeshop-infra.git
     targetRevision: argocd
-    path: charts/coffeeshop-v2
+    path: charts/coffeeshop
     helm:
       valueFiles:
       - values.yaml
