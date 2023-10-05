@@ -4,6 +4,7 @@ metadata:
   name: build-and-push-coffeeshop-service
   labels:
     app: coffeeshop-service
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   params:
     - default: latest

@@ -1,11 +1,13 @@
 apiVersion: tekton.dev/v1beta1
 kind: PipelineRun
 metadata:
-  name: barista-node-pipelinerun
+  name: coffeeshop-service-pipelinerun
   namespace: coffeeshop-build
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
 spec:
   pipelineRef:
-    name: build-and-push-barista-node
+    name: build-and-push-coffeeshop-service
   workspaces: 
   - name: maven-settings
     volumeClaimTemplate:

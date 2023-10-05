@@ -4,6 +4,7 @@ metadata:
   name: build-and-push-barista-node
   labels:
     app: barista-node
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   params:
     - default: latest
