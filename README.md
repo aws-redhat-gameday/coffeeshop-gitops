@@ -1,13 +1,5 @@
 # Coffeeshop infrastructure
 
-## Quest requirmenet
-
-- 3 public ECR repositories
-- FIS
-  - Log group: FIScoffeeshop
-  - IAM role: AWSFISIAMRole-coffeeshop
-  - FIS experiment to delete pods
-
 ## Pre-requisites
 
 - ROSA cluster

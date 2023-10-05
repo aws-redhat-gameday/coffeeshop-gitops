@@ -1,0 +1,13 @@
+projectnamespace: gd-coffeeshop
+
+kafka:
+  bootstrap:
+    service: coffeeshop-kafka-kafka-bootstrap
+    port: 9092
+
+image:
+  pullPolicy: Always
+
+replica_count:
+  coffeeshop_service: 1
+  barista_node: 1
