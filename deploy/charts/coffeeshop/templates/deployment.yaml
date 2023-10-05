@@ -64,7 +64,7 @@ spec:
     spec:
       containers:
         - name: barista-node
-          image: public.ecr.aws/t7z4c1o2/barista-node:latest
+          image: image-registry.openshift-image-registry.svc:5000/coffeeshop-build/barista-node:latest
           imagePullPolicy: {{ .Values.image.pullPolicy }}
 {{- if .Values.securityContext }}
           securityContext:
