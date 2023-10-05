@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: coffeeshop
+  namespace: openshift-gitops
+  finalizers:
+    # The default behaviour is foreground cascading deletion
+    - resources-finalizer.argocd.argoproj.io
+    # Alternatively, you can use background cascading deletion
+    # - resources-finalizer.argocd.argoproj.io/background
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/aws-redhat-gameday/coffeeshop-infra.git
+    targetRevision: argocd
+    path: deploy/charts/coffeeshop
+    helm:
+      valueFiles:
+      - values.yaml
+  destination: 
+    server: https://kubernetes.default.svc
+    namespace: coffeeshop-deploy
+
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+
+    automated:
+      selfHeal: true
+      prune: true
