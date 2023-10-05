@@ -14,13 +14,13 @@ spec:
   source:
     repoURL: https://github.com/aws-redhat-gameday/coffeeshop-infra.git
     targetRevision: argocd
-    path: charts/coffeeshop
+    path: deploy/charts/coffeeshop
     helm:
       valueFiles:
       - values.yaml
   destination: 
     server: https://kubernetes.default.svc
-    namespace: coffeeshop
+    namespace: coffeeshop-deploy
 
   syncPolicy:
     syncOptions:

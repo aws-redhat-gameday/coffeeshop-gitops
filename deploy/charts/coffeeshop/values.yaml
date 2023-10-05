@@ -1,4 +1,4 @@
-projectnamespace: gd-coffeeshop
+projectnamespace: coffeeshop-deploy
 
 kafka:
   bootstrap:
