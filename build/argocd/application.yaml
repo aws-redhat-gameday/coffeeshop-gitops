@@ -15,9 +15,6 @@ spec:
     repoURL: https://github.com/aws-redhat-gameday/coffeeshop-infra.git
     targetRevision: argocd
     path: build/tekton
-    helm:
-      valueFiles:
-      - values.yaml
   destination: 
     server: https://kubernetes.default.svc
     namespace: coffeeshop-build
