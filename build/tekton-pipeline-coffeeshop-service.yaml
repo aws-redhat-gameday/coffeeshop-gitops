@@ -52,7 +52,7 @@ spec:
           value: coffeeshop-service/Dockerfile
         - name: IMAGE
           value: >-
-            image-registry.openshift-image-registry.svc:5000/coffeeshop/coffeeshop-service:$(params.IMAGE_TAG)
+            image-registry.openshift-image-registry.svc:5000/coffeeshop-build/coffeeshop-service:$(params.IMAGE_TAG)
         - name: TLSVERIFY
           value: 'false'
       runAfter:
