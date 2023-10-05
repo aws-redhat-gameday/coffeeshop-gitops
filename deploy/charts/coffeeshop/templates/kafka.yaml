@@ -5,6 +5,8 @@ metadata:
   labels:
     chart: {{ .Chart.Name }}-{{ .Chart.Version }}
     release: {{ .Release.Name }}
+  annotations:
+      argocd.argoproj.io/sync-wave: "1"
 spec:
   entityOperator:
     topicOperator: {}

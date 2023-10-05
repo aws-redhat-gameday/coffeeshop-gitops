@@ -47,6 +47,8 @@ metadata:
     app: barista-node
     chart: {{ .Chart.Name }}-{{ .Chart.Version }}
     release: {{ .Release.Name }}
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   replicas: {{ .Values.replica_count.barista_node }}
   selector:
