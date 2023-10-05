@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
         - name: coffeeshop-service
-          image: public.ecr.aws/t7z4c1o2/coffeeshop-service:latest
+          image: image-registry.openshift-image-registry.svc:5000/coffeeshop-build/coffeeshop-service:latest
           imagePullPolicy: {{ .Values.image.pullPolicy }}
 {{- if .Values.securityContext }}
           securityContext:
