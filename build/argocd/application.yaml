@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: coffeeshop-deploy
+  name: coffeeshop-build
   namespace: openshift-gitops
   finalizers:
     # The default behaviour is foreground cascading deletion
@@ -14,13 +14,10 @@ spec:
   source:
     repoURL: https://github.com/aws-redhat-gameday/coffeeshop-infra.git
     targetRevision: argocd
-    path: deploy/charts/coffeeshop
-    helm:
-      valueFiles:
-      - values.yaml
+    path: build/tekton
   destination: 
     server: https://kubernetes.default.svc
-    namespace: coffeeshop-deploy
+    namespace: coffeeshop-build
 
   syncPolicy:
     syncOptions:

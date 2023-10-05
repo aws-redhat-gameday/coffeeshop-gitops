@@ -1,9 +1,10 @@
 apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
-  name: build-and-push-coffeeshop-service
+  name: build-and-push-barista-node
   labels:
-    app: coffeeshop-service
+    app: barista-node
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   params:
     - default: latest
@@ -25,38 +26,19 @@ spec:
       workspaces:
         - name: output
           workspace: shared-workspace
-    - name: build-app
-      params:
-        - name: CONTEXT_DIR
-          value: coffeeshop-service
-        - name: GOALS
-          value:
-            - '-DskipTests'
-            - clean
-            - package
-      runAfter:
-        - git-clone
-      taskRef:
-        kind: Task
-        name: maven
-      workspaces:
-        - name: maven-settings
-          workspace: maven-settings
-        - name: source
-          workspace: shared-workspace
     - name: build-image
       params:
         - name: CONTEXT
-          value: coffeeshop-service
+          value: barista-node
         - name: DOCKERFILE
-          value: coffeeshop-service/Dockerfile
+          value: barista-node/Dockerfile
         - name: IMAGE
           value: >-
-            image-registry.openshift-image-registry.svc:5000/coffeeshop-build/coffeeshop-service:$(params.IMAGE_TAG)
+            image-registry.openshift-image-registry.svc:5000/coffeeshop-build/barista-node:$(params.IMAGE_TAG)
         - name: TLSVERIFY
           value: 'false'
       runAfter:
-        - build-app
+        - git-clone
       taskRef:
         kind: ClusterTask
         name: buildah
@@ -67,7 +49,7 @@ spec:
       params:
         - name: SCRIPT
           value: |
-            oc tag coffeeshop-service:$(params.IMAGE_TAG) coffeeshop-service:latest
+            oc tag barista-node:$(params.IMAGE_TAG) barista-node:latest
       runAfter:
         - build-image
       taskRef:
