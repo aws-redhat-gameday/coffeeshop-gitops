@@ -2,7 +2,6 @@ apiVersion: tekton.dev/v1beta1
 kind: PipelineRun
 metadata:
   name: coffeeshop-service-pipelinerun
-  namespace: coffeeshop-build
   annotations:
     argocd.argoproj.io/sync-wave: "3"
 spec:
