@@ -13,7 +13,7 @@ spec:
 
   source:
     repoURL: https://github.com/aws-redhat-gameday/coffeeshop-infra.git
-    targetRevision: argocd
+    targetRevision: main
     path: deploy/charts/coffeeshop
     helm:
       valueFiles:
