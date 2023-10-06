@@ -15,7 +15,7 @@ The pipelines build the container images required for the `barista-node` and `co
 The pipelines get created in a project namespace named `coffeeshop-build`.
 
 ```bash
-oc apply build/argocd/application.yaml
+oc apply -k build/argocd/
 ```
 
 Run the Tekton pipelines:

@@ -12,7 +12,7 @@ spec:
   project: default
 
   source:
-    repoURL: https://github.com/aws-redhat-gameday/coffeeshop-gitops.git
+    repoURL: https://coffeeshop-gitea-scm.apps.gameday.ibqz.p1.openshiftapps.com/developer/coffeeshop-gitops.git
     targetRevision: argocd
     path: build/tekton
   destination: 
