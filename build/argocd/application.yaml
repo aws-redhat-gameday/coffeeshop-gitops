@@ -14,14 +14,17 @@ spec:
     repoURL: https://github.com/aws-redhat-gameday/coffeeshop-gitops.git
     targetRevision: argocd
     path: build/tekton
-  destination: 
+  destination:
     server: https://kubernetes.default.svc
     namespace: coffeeshop-build
 
   syncPolicy:
     syncOptions:
-    - CreateNamespace=true
+      - CreateNamespace=true
 
     automated:
       selfHeal: true
       prune: true
+
+  sync:
+    wave: 30
