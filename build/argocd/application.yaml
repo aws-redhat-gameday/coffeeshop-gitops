@@ -24,7 +24,6 @@ spec:
 
     automated:
       selfHeal: true
-      prune: true
 
   sync:
     wave: 30
