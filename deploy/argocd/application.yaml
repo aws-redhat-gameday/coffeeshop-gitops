@@ -22,9 +22,6 @@ spec:
     namespace: coffeeshop-deploy
 
   syncPolicy:
-    # syncOptions:
-    #   - CreateNamespace=true
-
     automated:
       selfHeal: true
 
