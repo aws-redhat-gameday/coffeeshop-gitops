@@ -57,4 +57,3 @@ spec:
         name: openshift-client
   workspaces:
     - name: shared-workspace
-    - name: maven-settings
