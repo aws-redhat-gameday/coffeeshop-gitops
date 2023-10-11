@@ -9,7 +9,6 @@ metadata:
   annotations:
       argocd.argoproj.io/sync-wave: "4"
 spec:
-  host: coffeeshop-service-gd-gameday.apps.aws-innovate.bvir.p1.openshiftapps.com
   path: /
   to:
     kind: Service
