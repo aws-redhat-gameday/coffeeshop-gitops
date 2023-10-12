@@ -7,8 +7,8 @@ kafka:
 
 image_pull_policy: Always
 images:
-  barista_node: default-route-openshift-image-registry.apps.gameday3.4nmr.p1.openshiftapps.com/coffeeshop-build/barista-node
-  coffeeshop_service: default-route-openshift-image-registry.apps.gameday3.4nmr.p1.openshiftapps.com/coffeeshop-build/coffeeshop-service
+  barista_node: image-registry.openshift-image-registry.svc:5000/coffeeshop-build/barista-node:latest
+  coffeeshop_service: image-registry.openshift-image-registry.svc:5000/coffeeshop-build/coffeeshop-service:latest
 
 replica_count:
   coffeeshop_service: 1
