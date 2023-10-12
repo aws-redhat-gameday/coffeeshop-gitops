@@ -5,26 +5,25 @@ apiVersion: tekton.dev/v1beta1
 kind: PipelineRun
 metadata:
   name: barista-node-pipelinerun
-  annotations:
-    argocd.argoproj.io/sync-wave: "3"
+  namespace: coffeeshop-build
 spec:
   pipelineRef:
     name: build-and-push-barista-node
-  workspaces: 
-  - name: maven-settings
-    volumeClaimTemplate:
-      spec:
-        accessModes:
-          - ReadWriteOnce
-        resources:
-          requests:
-            storage: 500Mi  
-  - name: shared-workspace
-    volumeClaimTemplate:
-      spec:
-        accessModes:
-          - ReadWriteOnce
-        resources:
-          requests:
-            storage: 500Mi
+  workspaces:
+    - name: maven-settings
+      volumeClaimTemplate:
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 500Mi
+    - name: shared-workspace
+      volumeClaimTemplate:
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 500Mi
   serviceAccountName: pipeline
