@@ -12,7 +12,7 @@ spec:
 
   source:
     repoURL: https://github.com/aws-redhat-gameday/coffeeshop-gitops.git
-    targetRevision: argocd
+    targetRevision: main
     path: build/tekton
   destination:
     server: https://kubernetes.default.svc
