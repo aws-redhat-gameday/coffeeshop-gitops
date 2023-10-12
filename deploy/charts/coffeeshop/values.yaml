@@ -5,8 +5,10 @@ kafka:
     service: coffeeshop-kafka-kafka-bootstrap
     port: 9092
 
-image:
-  pullPolicy: Always
+image_pull_policy: Always
+images:
+  barista_node: image-registry.openshift-image-registry.svc:5000/coffeeshop-build/barista-node:latest
+  coffeeshop_service: image-registry.openshift-image-registry.svc:5000/coffeeshop-build/coffeeshop-service:latest
 
 replica_count:
   coffeeshop_service: 1

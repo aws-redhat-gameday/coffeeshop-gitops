@@ -17,9 +17,9 @@ spec:
         - name: url
           value: https://github.com/aws-redhat-gameday/coffeeshop-app.git
         - name: subdirectory
-          value: ''
+          value: ""
         - name: deleteExisting
-          value: 'true'
+          value: "true"
       taskRef:
         kind: Task
         name: git-clone
@@ -32,7 +32,7 @@ spec:
           value: coffeeshop-service
         - name: GOALS
           value:
-            - '-DskipTests'
+            - "-DskipTests"
             - clean
             - package
       runAfter:
@@ -55,7 +55,7 @@ spec:
           value: >-
             image-registry.openshift-image-registry.svc:5000/coffeeshop-build/coffeeshop-service:$(params.IMAGE_TAG)
         - name: TLSVERIFY
-          value: 'false'
+          value: "false"
       runAfter:
         - build-app
       taskRef:
@@ -64,16 +64,6 @@ spec:
       workspaces:
         - name: source
           workspace: shared-workspace
-    - name: tag-image-as-latest
-      params:
-        - name: SCRIPT
-          value: |
-            oc tag coffeeshop-service:$(params.IMAGE_TAG) coffeeshop-service:latest
-      runAfter:
-        - build-image
-      taskRef:
-        kind: ClusterTask
-        name: openshift-client
   workspaces:
     - name: shared-workspace
     - name: maven-settings

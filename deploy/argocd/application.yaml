@@ -16,15 +16,14 @@ spec:
     path: deploy/charts/coffeeshop
     helm:
       valueFiles:
-      - values.yaml
-  destination: 
+        - values.yaml
+  destination:
     server: https://kubernetes.default.svc
     namespace: coffeeshop-deploy
 
   syncPolicy:
-    syncOptions:
-    - CreateNamespace=true
-
     automated:
       selfHeal: true
-      prune: true
+
+  sync:
+    wave: 30

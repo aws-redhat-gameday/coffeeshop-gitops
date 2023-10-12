@@ -17,9 +17,9 @@ spec:
         - name: url
           value: https://github.com/aws-redhat-gameday/coffeeshop-app.git
         - name: subdirectory
-          value: ''
+          value: ""
         - name: deleteExisting
-          value: 'true'
+          value: "true"
       taskRef:
         kind: Task
         name: git-clone
@@ -36,7 +36,7 @@ spec:
           value: >-
             image-registry.openshift-image-registry.svc:5000/coffeeshop-build/barista-node:$(params.IMAGE_TAG)
         - name: TLSVERIFY
-          value: 'false'
+          value: "false"
       runAfter:
         - git-clone
       taskRef:
@@ -45,16 +45,5 @@ spec:
       workspaces:
         - name: source
           workspace: shared-workspace
-    - name: tag-image-as-latest
-      params:
-        - name: SCRIPT
-          value: |
-            oc tag barista-node:$(params.IMAGE_TAG) barista-node:latest
-      runAfter:
-        - build-image
-      taskRef:
-        kind: ClusterTask
-        name: openshift-client
   workspaces:
     - name: shared-workspace
-    - name: maven-settings
