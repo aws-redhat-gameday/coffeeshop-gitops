@@ -1,0 +1,22 @@
+kind: AppProject
+apiVersion: argoproj.io/v1alpha1
+metadata:
+  name: coffeeshop-build
+  namespace: openshift-gitops
+spec:
+  clusterResourceWhitelist:
+    - group: "*"
+      kind: "*"
+  destinations:
+    - namespace: "coffeeshop-build"
+      server: "*"
+  sourceRepos:
+    - "*"
+  roles:
+    - description: AWS developer admin group
+      groups:
+        - aws-developer
+      name: aws-developers
+      policies:
+        - >-
+          g, aws-developer, role:admin
