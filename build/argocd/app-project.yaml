@@ -15,8 +15,8 @@ spec:
   roles:
     - description: AWS developer admin group
       groups:
-        - aws-developer
+        - awsdeveloper
       name: aws-developers
       policies:
         - >-
-          g, aws-developer, role:admin
+          g, awsdeveloper, role:admin
