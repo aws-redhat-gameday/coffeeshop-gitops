@@ -2,7 +2,7 @@ projectnamespace: coffeeshop-deploy
 
 kafka:
   bootstrap:
-    service: coffeeshop-kafka-kafka-bootstrap
+    service: coffeeshop-kafka-kafka-bootstrap.coffeeshop-kafka.svc.cluster.local
     port: 9092
 
 image_pull_policy: Always
