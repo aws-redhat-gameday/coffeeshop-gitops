@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: coffeeshop-deploy
+  labels:
+    group.admin: read-write
+    group.awsdeveloper: read-write
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: coffeeshop-deploy
+
+  source:
+    repoURL: https://github.com/aws-redhat-gameday/coffeeshop-gitops.git
+    targetRevision: argocd
+    path: deploy/charts/coffeeshop
+    helm:
+      valueFiles:
+        - values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: coffeeshop-deploy
+
+  syncPolicy:
+    automated:
+      selfHeal: true
+
+  sync:
+    wave: 30
