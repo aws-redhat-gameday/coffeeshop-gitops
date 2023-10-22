@@ -13,7 +13,7 @@ spec:
   source:
     repoURL: https://github.com/aws-redhat-gameday/coffeeshop-gitops.git
     targetRevision: argocd
-    path: deploy/charts/coffeeshop
+    path: deploy/charts/app
     helm:
       valueFiles:
         - values.yaml
