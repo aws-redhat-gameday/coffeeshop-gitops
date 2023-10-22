@@ -2,9 +2,6 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: coffeeshop-kafka
-  labels:
-    group.admin: read-write
-    group.awsdeveloper: read-only
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:

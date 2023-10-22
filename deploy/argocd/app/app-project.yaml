@@ -13,11 +13,10 @@ spec:
   sourceRepos:
     - "*"
   roles:
-    - description: AWS developer admin group
-      groups:
+    - groups:
         - awsdeveloper
-      name: awsdeveloper
+      name: awsdeveloper-role
       policies:
         - >-
-          p, proj:coffeeshop-kafka:awsdeveloper, applications, *,
-          coffeeshop-kafka/*, allow
+          p, proj:coffeeshop-deploy:awsdeveloper-role, applications, *, coffeeshop-deploy/*,
+          allow
