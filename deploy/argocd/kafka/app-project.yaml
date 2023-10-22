@@ -8,7 +8,7 @@ spec:
     - group: "*"
       kind: "*"
   destinations:
-    - namespace: "coffeeshop-deploy"
+    - namespace: "coffeeshop-kafka"
       server: "*"
   sourceRepos:
     - "*"
