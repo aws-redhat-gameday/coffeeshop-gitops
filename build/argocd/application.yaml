@@ -2,11 +2,11 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: coffeeshop-build
+  labels:
+    group.admin: read-write
+    group.awsdeveloper: pipeline-run-only
   finalizers:
-    # The default behaviour is foreground cascading deletion
     - resources-finalizer.argocd.argoproj.io
-    # Alternatively, you can use background cascading deletion
-    # - resources-finalizer.argocd.argoproj.io/background
 spec:
   project: coffeeshop-build
 
