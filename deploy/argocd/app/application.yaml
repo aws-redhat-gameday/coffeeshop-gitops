@@ -1,22 +1,25 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: coffeeshop-build
+  name: coffeeshop-deploy
   labels:
     group.admin: read-write
-    group.awsdeveloper: pipeline-run-only
+    group.awsdeveloper: read-write
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  project: coffeeshop-build
+  project: coffeeshop-deploy
 
   source:
     repoURL: https://github.com/aws-redhat-gameday/coffeeshop-gitops.git
-    targetRevision: main
-    path: build/tekton
+    targetRevision: argocd
+    path: deploy/charts/app
+    helm:
+      valueFiles:
+        - values.yaml
   destination:
     server: https://kubernetes.default.svc
-    namespace: coffeeshop-build
+    namespace: coffeeshop-deploy
 
   syncPolicy:
     automated:

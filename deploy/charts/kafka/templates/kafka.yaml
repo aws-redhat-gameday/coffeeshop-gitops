@@ -8,25 +8,25 @@ metadata:
   annotations:
       argocd.argoproj.io/sync-wave: "1"
 spec:
-  entityOperator:
-    topicOperator: {}
-    userOperator: {}
+  # entityOperator:
+  #   topicOperator: {}
+  #   userOperator: {}
   kafka:
     config:
       default.replication.factor: 3
       inter.broker.protocol.version: '3.5'
       min.insync.replicas: 2
-      num.partitions: 15
+      num.partitions: {{ .Values.partition_count }}
       offsets.topic.replication.factor: 3
       transaction.state.log.min.isr: 2
       transaction.state.log.replication.factor: 3
     listeners:
       - name: plain
-        port: 9092
+        port: {{ .Values.port.internal }}
         tls: false
         type: internal
       - name: tls
-        port: 9093
+        port: {{ .Values.port.tls }}
         tls: true
         type: internal
     replicas: 3

@@ -31,7 +31,8 @@ Install the Argo CD application to deploy the `barista-node` and `coffeeshop-ser
 Once the build phase is completed, run:
 
 ```bash
-oc apply -f deploy/argocd/application.yaml
+oc apply -k deploy/argocd/kafka/
+oc apply -k deploy/argocd/app/
 ```
 
 The services get deployed in a project namespace named `coffeeshop-deploy`.
@@ -39,6 +40,7 @@ The services get deployed in a project namespace named `coffeeshop-deploy`.
 ### Cleanup
 
 ```bash
-oc delete -f build/argocd/application.yaml
-oc delete -f deploy/argocd/application.yaml
+oc delete -k build/argocd/
+oc delete -k deploy/argocd/kafka/
+oc delete -k deploy/argocd/app/
 ```
