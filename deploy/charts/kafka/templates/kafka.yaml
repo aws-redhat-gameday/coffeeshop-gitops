@@ -16,7 +16,7 @@ spec:
       default.replication.factor: 3
       inter.broker.protocol.version: '3.5'
       min.insync.replicas: 2
-      num.partitions: {{ .Values.partitions_count }}
+      num.partitions: {{ .Values.partition_count }}
       offsets.topic.replication.factor: 3
       transaction.state.log.min.isr: 2
       transaction.state.log.replication.factor: 3
