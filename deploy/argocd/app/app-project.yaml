@@ -19,4 +19,5 @@ spec:
       name: awsdeveloper
       policies:
         - >-
-          g, awsdeveloper, role:admin
+          p, proj:coffeeshop-kafka:awsdeveloper, applications, *,
+          coffeeshop-kafka/*, allow

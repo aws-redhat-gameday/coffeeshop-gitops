@@ -13,10 +13,14 @@ spec:
   sourceRepos:
     - "*"
   roles:
-    - description: AWS developer admin group
+    - description: Readonly AWS developer group
       groups:
         - awsdeveloper
       name: awsdeveloper
       policies:
         - >-
-          g, awsdeveloper, role:admin
+          p, proj:coffeeshop-build:awsdeveloper, applications, *,
+          coffeeshop-build/*, deny
+        - >-
+          p, proj:coffeeshop-build:awsdeveloper, applications, get,
+          coffeeshop-build/*, allow
