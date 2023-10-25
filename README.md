@@ -21,7 +21,7 @@ oc apply -k build/argocd/
 Run the Tekton pipelines:
 
 ```bash
-oc apply -f build/tekton/pipelinerun
+oc apply -f build/tekton/pipelineruns
 ```
 
 ### Deployment

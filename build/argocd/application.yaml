@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://github.com/aws-redhat-gameday/coffeeshop-gitops.git
     targetRevision: main
-    path: build/tekton
+    path: build/tekton/pipelines
   destination:
     server: https://kubernetes.default.svc
     namespace: coffeeshop-build
