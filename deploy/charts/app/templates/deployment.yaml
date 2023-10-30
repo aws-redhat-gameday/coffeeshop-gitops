@@ -7,6 +7,8 @@ metadata:
     app: coffeeshop-service
     chart: {{ .Chart.Name }}-{{ .Chart.Version }}
     release: {{ .Release.Name }}
+  annotations:
+      argocd.argoproj.io/sync-wave: "1"
 spec:
   replicas: {{ .Values.replica_count.coffeeshop_service }}
   selector:

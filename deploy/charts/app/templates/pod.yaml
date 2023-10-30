@@ -5,6 +5,8 @@ metadata:
   namespace: coffeeshop-deploy
   labels:
     run: coffee-orders-job
+  annotations:
+      argocd.argoproj.io/sync-wave: "2"
 spec:
   restartPolicy: OnFailure
   containers:
