@@ -8,7 +8,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "2"
 spec:
-  parallelism: 3
+  parallelism: 1
   activeDeadlineSeconds: 259200
   template:
     metadata:
