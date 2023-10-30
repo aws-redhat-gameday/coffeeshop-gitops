@@ -1,45 +1,50 @@
 apiVersion: batch/v1
-kind: Job
+kind: CronJob
 metadata:
   name: coffee-orders-job
   namespace: coffeeshop-deploy
   labels:
     run: coffee-orders-job
   annotations:
-    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
 spec:
-  parallelism: 1
-  activeDeadlineSeconds: 259200
-  template:
-    metadata:
-      name: coffee-orders-job
+  schedule: "* * * * *"
+  jobTemplate:
     spec:
-      restartPolicy: OnFailure
+      template:
+        metadata:
+          name: coffee-orders-job
+        spec:
+          restartPolicy: OnFailure
 
-      containers:
-        - name: coffee-orders-job
-          image: curlimages/curl:latest # Use an official curl image
-          command:
-            - /bin/sh
-            - -c
-            - |
-              customers=$(cat /customers/customers)
-              drinks=$(cat /drinks/drinks)
-              while true; do
-                selected_customer=$(echo "$customers" | shuf -n 1)
-                selected_drink=$(echo "$drinks" | shuf -n 1)
-                curl "http://coffeeshop-service.coffeeshop-deploy.svc.cluster.local:8080/messaging" -H "Content-Type: application/json" --data-raw "{\"name\":\"$selected_customer\",\"product\":\"$selected_drink\"}"
-                sleep 3
-              done
-          volumeMounts:
+          containers:
+            - name: coffee-orders-job
+              image: curlimages/curl:latest # Use an official curl image
+              command:
+                - /bin/sh
+                - -c
+                - |
+                  customers=$(cat /customers/customers)
+                  drinks=$(cat /drinks/drinks)
+                  secs=60
+                  endTime=$(( $(date +%s) + secs ))
+
+                  while [ $(date +%s) -lt $endTime ]; do  
+                    selected_customer=$(echo "$customers" | shuf -n 1)
+                    selected_drink=$(echo "$drinks" | shuf -n 1)
+                    curl "http://coffeeshop-service.coffeeshop-deploy.svc.cluster.local:8080/messaging" -H "Content-Type: application/json" --data-raw "{\"name\":\"$selected_customer\",\"product\":\"$selected_drink\"}"
+                    sleep 3
+                  done
+              volumeMounts:
+                - name: customers
+                  mountPath: /customers
+                - name: drinks
+                  mountPath: /drinks
+          volumes:
             - name: customers
-              mountPath: /customers
+              configMap:
+                name: customer-list-cm
             - name: drinks
-              mountPath: /drinks
-      volumes:
-        - name: customers
-          configMap:
-            name: customer-list-cm
-        - name: drinks
-          configMap:
-            name: drink-list-cm
+              configMap:
+                name: drink-list-cm
