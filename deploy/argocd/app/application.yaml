@@ -18,10 +18,6 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: coffeeshop-deploy
-
-  syncPolicy:
-    automated:
-      selfHeal: true
-
+ 
   sync:
     wave: 30
