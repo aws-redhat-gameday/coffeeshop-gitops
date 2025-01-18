@@ -60,8 +60,14 @@ spec:
       runAfter:
         - build-app
       taskRef:
-        kind: ClusterTask
-        name: buildah
+        resolver: cluster
+        params:
+          - name: kind
+            value: task
+          - name: name
+            value: buildah
+          - name: namespace
+            value: openshift-pipelines
       workspaces:
         - name: source
           workspace: shared-workspace
