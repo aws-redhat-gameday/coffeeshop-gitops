@@ -15,15 +15,25 @@ spec:
   tasks:
     - name: git-clone
       params:
-        - name: url
+        - name: URL
           value: https://github.com/aws-redhat-gameday/coffeeshop-app.git
-        - name: subdirectory
+        - name: SUBDIRECTORY
           value: ""
-        - name: deleteExisting
+        - name: DELETE_EXISTING
           value: "true"
+        - name: USER_HOME
+          value: "/tmp"
+        - name: SSL_VERIFY
+          value: "false"
       taskRef:
-        kind: Task
-        name: git-clone
+        resolver: cluster
+        params:
+          - name: kind
+            value: task
+          - name: name
+            value: git-clone
+          - name: namespace
+            value: openshift-pipelines
       workspaces:
         - name: output
           workspace: shared-workspace
