@@ -48,7 +48,7 @@ spec:
   kafka:
     config:
       default.replication.factor: 3
-      inter.broker.protocol.version: '3.5'
+      inter.broker.protocol.version: '4.0'
       min.insync.replicas: 2
       num.partitions: {{ .Values.partition_count }}
       offsets.topic.replication.factor: 3
@@ -63,7 +63,7 @@ spec:
         port: {{ .Values.port.tls }}
         tls: true
         type: internal
-    version: 3.9.0
+    version: 4.0.0
   entityOperator:
     topicOperator: {}
     userOperator: {}
