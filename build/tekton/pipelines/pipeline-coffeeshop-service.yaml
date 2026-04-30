@@ -67,6 +67,8 @@ spec:
             image-registry.openshift-image-registry.svc:5000/coffeeshop-build/coffeeshop-service:$(params.IMAGE_TAG)
         - name: TLSVERIFY
           value: "false"
+        - name: BUILD_EXTRA_ARGS
+          value: "--security-opt unmask=/proc/interrupts"
       runAfter:
         - build-app
       taskRef:
